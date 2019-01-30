@@ -1,8 +1,9 @@
 <template>
     <div id="Footer">
-        <p>
-            {{headerMsg}}
-        </p>
+        <v-footer class="pa-3">
+        <v-spacer></v-spacer>
+        <div>&copy; {{ new Date().getFullYear() }} {{headerMsg}}</div>
+        </v-footer>
     </div>
 </template>
 
@@ -28,8 +29,7 @@ div p{
 }
 
 #Footer {
-    height: 10%;
-    background: #fbedfb; 
+    height: 8%;
 }
 
 </style>

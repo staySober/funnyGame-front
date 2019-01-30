@@ -12,8 +12,11 @@
 
     <!--GO-->
      <transition name="fade">
-      <div style="padding-top: 20px; margin-top: 20px;" v-show = 'isStart'>
-      <Loding v-bind:isStart='isStart'></Loding>
+      <div style="padding-top: 20px; margin-top: 20px; width: 100%; hight:100%" v-show = 'isStart'>
+      <Loding v-bind:isStart='isStart' v-on:showGame='showMsgFromChild'></Loding>
+      <div v-show='this.showGame' id="gameCenter">
+        <img src="../assets/plane.jpg" id="plane">
+      </div>
       </div>
     </transition>
   </div>
@@ -25,17 +28,42 @@ import Loding from './Loding'
 
 export default {
   name: 'center',
+  props: ['isShow'],
   data(){
      return {
-      isStart: false
+      isStart: false,
+      showGame: false,
+      positionPoint: 0,
      }
   },
 
   methods: {
     startGame: function(event) {
       this.isStart = true
-    }
+    },
+    showMsgFromChild: function(data) {
+      console.log(data);
+      this.showGame = data;
+    },
   },
+
+created(){
+  var _self = this;
+  // 初始化时 全局监听键盘事件
+  document.onkeydown = function(e){
+      var key = window.event.keyCode;
+      if(key == 38 ){
+         console.log('up')
+         var plane = document.getElementById('plane');
+         plane.style.top=(plane.offsetTop+20)+'px';
+      }
+      if(key == 40 ){
+         console.log('down')
+         var plane = document.getElementById('plane');
+         plane.style.down=(plane.offsetDown-20)+'px';
+      }
+  }
+},
 
   components: {
     'Loding': Loding
@@ -45,7 +73,7 @@ export default {
 
 <style scoped>
 #Center {
-  height: 80%; 
+  height: 84%; 
   width: 100%;
   background-image: url('../assets/bg.jpg');
   background-repeat: no-repeat;
@@ -63,6 +91,23 @@ export default {
   margin-top: 2%;
 }
 
+#plane{
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-left: 10px;
+  position:absolute；
+}
+
+#gameCenter {
+  width: 80%;
+  height:360px;
+  border: solid 1px;
+  text-align: center;
+  margin-left: 10%;
+  padding-bottom:10px;
+  padding-top:10px;
+}
 
 .theme--light.v-btn:not(.v-btn--icon):not(.v-btn--flat) {
   background-color: #ef7e7e;

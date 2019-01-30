@@ -1,8 +1,8 @@
 <template>
   <div id="App">
-   <Header></Header>
-   <Center></Center>
-   <Footer></Footer>
+     <Header></Header>
+     <Center></Center>
+     <Footer></Footer>
   </div>
 </template>
 
@@ -24,5 +24,6 @@ export default {
 <style scoped>
 #App {
    height: 100%;
+   overflow: hidden;
 }
 </style>

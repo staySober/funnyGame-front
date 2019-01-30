@@ -3,6 +3,7 @@
         <p>
             {{headerMsg}}
         </p>
+          <v-divider style="margin-top:-4px"></v-divider>
     </div>
 </template>
 
@@ -28,6 +29,6 @@ div p{
 }
 #Header {
     height: 10%;
-    background: #BBE8F2; 
+    background:#ef94ba; 
 }
 </style>

@@ -32,6 +32,9 @@
                 if (this.value === 100) {
                     this.isShow = false;
                     clearInterval(this.interval);
+
+                    // 子组件向父组件传递值
+                    this.$emit('showGame',true);
                     return
                 }
                 this.value += 20
