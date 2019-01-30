@@ -11,13 +11,18 @@
     </div>
 
     <!--GO-->
-    <div style="padding-top: 20px; margin-top: 20px;" v-show = 'isStart'>
-    start ...................
-    </div>
+     <transition name="fade">
+      <div style="padding-top: 20px; margin-top: 20px;" v-show = 'isStart'>
+      <Loding v-bind:isStart='isStart'></Loding>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+// 局部引用组建
+import Loding from './Loding'
+
 export default {
   name: 'center',
   data(){
@@ -25,17 +30,29 @@ export default {
       isStart: false
      }
   },
-  methods : {
+
+  methods: {
     startGame: function(event) {
       this.isStart = true
     }
   },
+
+  components: {
+    'Loding': Loding
+  }
 }
 </script>
 
 <style scoped>
-div {
+#Center {
   height: 80%; 
+  width: 100%;
+  background-image: url('../assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  background-position: center 0;
+  -o-background-size: cover;
 }
 
 #ready {
@@ -53,5 +70,12 @@ div {
 
 .layout{
   margin-left: 40.5%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
